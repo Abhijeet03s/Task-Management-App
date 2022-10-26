@@ -1,6 +1,11 @@
+import { useState } from "react"
 import { Form } from "./components/Form"
 
 export default function App() {
+
+  const [userInput, setUserInput] = useState("")
+  const [tasks, setTasks] = useState([])
+  const [edit, setEdit] = useState(null)
 
   return (
     <>
@@ -9,16 +14,21 @@ export default function App() {
         <div className="grid grid-cols-2 place-items-center gap-4 px-20 ">
           <div>
             <h1 className="text-3xl font-bold">To-do</h1>
-            <div className="w-[400px] h-[500px] flex flex-col bg-[#2e2e2e] p-5 mt-5">
-              <Form />
-            </div>
+            <Form
+              userInput={userInput}
+              setUserInput={setUserInput}
+              tasks={tasks}
+              setTasks={setTasks}
+              edit={edit}
+              setEdit={setEdit}
+            />
           </div>
-          <div>
+          {/* <div className="flex flex-col justify-center items-center">
             <h1 className="text-3xl font-bold text-center">Done</h1>
-            <div className="w-[400px] h-[500px] flex flex-col bg-[#2e2e2e] p-5 mt-5">
-              <Form />
+            <div className="w-[450px] flex flex-col items-start bg-[#2e2e2e] p-5 mt-5 rounded-lg">
             </div>
-          </div>
+          </div> */}
+          
         </div>
       </div>
     </>
