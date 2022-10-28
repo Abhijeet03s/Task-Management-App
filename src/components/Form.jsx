@@ -3,68 +3,57 @@ import { List } from "./List"
 import { v4 as uuidv4 } from 'uuid';
 
 
-export const Form = ({ userInput, setUserInput, tasks, setTasks, edit, setEdit }) => {
+export const Form = ({ userInput, setUserInput, tasks, setTasks, editTask, setEditTask, inputFocus }) => {
 
     const handleChange = (e) => {
         setUserInput(e.target.value)
     }
 
     const updateTask = (id, title, completed) => {
-        const newTask = tasks.map((todo) => todo.id === id ? { title, id, completed } : todo)
+        const newTask = tasks.map((todo) => todo.id === id ? { id, title, completed } : todo)
         setTasks(newTask)
-        setEdit("")
+        setEditTask("")
     }
 
     useEffect(() => {
-        if (edit) {
-            setUserInput(edit.title)
+        if (editTask) {
+            setUserInput(editTask.title)
         } else {
             setUserInput("")
         }
-    }, [setUserInput, edit])
+    }, [setUserInput, editTask])
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!edit) {
-            setTasks([...tasks,
-            {
-                id: uuidv4(),
-                title: userInput,
-                completed: false
-            }])
+        if (!editTask) {
+            setTasks([...tasks, { id: uuidv4(), title: userInput, completed: false }])
             setUserInput("")
         } else {
-            updateTask(userInput, edit.id, edit.completed)
+            updateTask(editTask.id, userInput, editTask.completed)
         }
-
-        setTasks([...tasks,
-        {
-            id: uuidv4(),
-            title: userInput,
-            completed: false
-        }])
-        setUserInput("")
     }
 
 
     return (
         <>
             <div className="w-[450px] min-h-[500px] flex flex-col bg-[#2e2e2e] p-5 mt-5 rounded-lg">
-                <form className="flex gap-4 w-full px-5" onSubmit={handleSubmit}
+                <form className="flex gap-4" onSubmit={handleSubmit}
                 >
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Your Task"
+                    <input className="shadow appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Your Task"
                         onChange={handleChange}
                         value={userInput}
+                        ref={inputFocus}
                     />
                     <button className="bg-transparent hover:bg-blue-500 text-white hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent rounded"
-                    >{edit ? "OK" : "ADD"}</button>
+                    >{editTask ? "OK" : "ADD"}</button>
                 </form>
-                <div className="m-4">
+                <div className="my-4">
                     <List
                         tasks={tasks}
                         setTasks={setTasks}
-                        setEdit={setEdit}
+                        setEditTask={setEditTask}
+                        inputFocus={inputFocus}
                     />
                 </div>
             </div>

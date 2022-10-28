@@ -1,12 +1,12 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Form } from "./components/Form"
 
 export default function App() {
 
   const [userInput, setUserInput] = useState("")
   const [tasks, setTasks] = useState([])
-  const [edit, setEdit] = useState(null)
-
+  const [editTask, setEditTask] = useState(null)
+  const inputFocus = useRef(null)
   return (
     <>
       <div className="max-w-full min-h-screen text-white text-center py-5 space-y-20 font-Poppins">
@@ -19,8 +19,9 @@ export default function App() {
               setUserInput={setUserInput}
               tasks={tasks}
               setTasks={setTasks}
-              edit={edit}
-              setEdit={setEdit}
+              editTask={editTask}
+              setEditTask={setEditTask}
+              inputFocus={inputFocus}
             />
           </div>
           {/* <div className="flex flex-col justify-center items-center">
@@ -34,5 +35,6 @@ export default function App() {
     </>
   )
 }
+
 
 
