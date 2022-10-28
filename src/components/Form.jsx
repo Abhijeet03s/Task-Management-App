@@ -3,7 +3,7 @@ import { List } from "./List"
 import { v4 as uuidv4 } from 'uuid';
 
 
-export const Form = ({ userInput, setUserInput, tasks, setTasks, editTask, setEditTask, inputFocus }) => {
+export default function Form({ userInput, setUserInput, tasks, setTasks, editTask, setEditTask, inputFocus }) {
 
     const handleChange = (e) => {
         setUserInput(e.target.value)
@@ -26,11 +26,15 @@ export const Form = ({ userInput, setUserInput, tasks, setTasks, editTask, setEd
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!editTask) {
-            setTasks([...tasks, { id: uuidv4(), title: userInput, completed: false }])
-            setUserInput("")
+        if (userInput === "") {
+            alert("Please enter the tasks")
         } else {
-            updateTask(editTask.id, userInput, editTask.completed)
+            if (!editTask) {
+                setTasks([...tasks, { id: uuidv4(), title: userInput, completed: false }])
+                setUserInput("")
+            } else {
+                updateTask(editTask.id, userInput, editTask.completed)
+            }
         }
     }
 
@@ -46,7 +50,7 @@ export const Form = ({ userInput, setUserInput, tasks, setTasks, editTask, setEd
                         ref={inputFocus}
                     />
                     <button className="bg-transparent hover:bg-blue-500 text-white hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent rounded"
-                    >{editTask ? "OK" : "ADD"}</button>
+                    >{editTask ? "Save" : "Add"}</button>
                 </form>
                 <div className="my-4">
                     <List

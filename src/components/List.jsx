@@ -3,7 +3,6 @@ import { FaEdit } from "react-icons/fa"
 import { MdTaskAlt } from "react-icons/md"
 import { MdDelete } from "react-icons/md"
 
-
 export const List = ({ tasks, setTasks, setEditTask, inputFocus }) => {
 
   const handleDelete = ({ id }) => {
@@ -39,14 +38,14 @@ export const List = ({ tasks, setTasks, setEditTask, inputFocus }) => {
             value={todo.title}
             onChange={(e) => e.preventDefault()}
           />
-          <div className='p-2 text-black '>
-            <button className='p-2' onClick={() => handleEdit(todo)}>
-              <FaEdit color="green" />
-            </button>
+          <div className='flex items-center space-x-2 text-black mx-2 '>
             <button onClick={() => handleCompleted(todo)}>
               <MdTaskAlt color='blue' />
             </button>
-            <button className='p-2' onClick={() => handleDelete(todo)}>
+            <button onClick={() => handleEdit(todo)}>
+              <FaEdit color="green" />
+            </button>
+            <button onClick={() => handleDelete(todo)}>
               <MdDelete color='red' />
             </button>
           </div>
