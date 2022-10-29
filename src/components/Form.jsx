@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { List } from "./List"
+import List from "./List";
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -58,6 +58,7 @@ export default function Form({ userInput, setUserInput, tasks, setTasks, editTas
                         setTasks={setTasks}
                         setEditTask={setEditTask}
                         inputFocus={inputFocus}
+                        isInCompletedSection={false}
                     />
                 </div>
             </div>

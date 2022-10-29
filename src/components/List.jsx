@@ -1,9 +1,11 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { FaEdit } from "react-icons/fa"
 import { MdTaskAlt } from "react-icons/md"
 import { MdDelete } from "react-icons/md"
+import { MdOutlineCancel } from "react-icons/md"
 
-export const List = ({ tasks, setTasks, setEditTask, inputFocus }) => {
+
+export default function List ({ tasks, setTasks, setEditTask, inputFocus, isInCompletedSection }) {
 
   const handleDelete = ({ id }) => {
     setTasks(tasks.filter((todo) => todo.id !== id))
@@ -28,9 +30,11 @@ export const List = ({ tasks, setTasks, setEditTask, inputFocus }) => {
     inputFocus.current.focus()
   }
 
+  const newTask = isInCompletedSection ? tasks.filter((todo) => todo.completed) : tasks.filter((todo) => !todo.completed)
+
   return (
     <>
-      {tasks.map((todo) => (
+      {newTask.map((todo) => (
         <li className="max-w-full flex justify-between items-center bg-white rounded-md h-[40px] mb-5" key={todo.id}>
           <input
             className='appearance-none border-none rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -40,7 +44,7 @@ export const List = ({ tasks, setTasks, setEditTask, inputFocus }) => {
           />
           <div className='flex items-center space-x-2 text-black mx-2 '>
             <button onClick={() => handleCompleted(todo)}>
-              <MdTaskAlt color='blue' />
+              {todo.completed ? <MdOutlineCancel color='red' /> : <MdTaskAlt color='blue' />}
             </button>
             <button onClick={() => handleEdit(todo)}>
               <FaEdit color="green" />
