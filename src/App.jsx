@@ -42,7 +42,7 @@ export default function App() {
               inputFocus={inputFocus}
             />
           </div>
-          <button className="bg-transparent hover:bg-blue-600 text-white hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent rounded" onClick={() => { SwapAll() }}>Swapp All</button>
+          <button className="bg-transparent hover:bg-blue-600 text-white hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent rounded" onClick={() => { SwapAll() }}>Swap All</button>
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-3xl font-bold text-center">Completed</h1>
             <div className="w-[450px] min-h-[500px] flex flex-col items-center bg-[#2e2e2e] p-5 mt-5 rounded-lg">
