@@ -54,25 +54,24 @@ export default function Form({ userInput, setUserInput, tasks, setTasks, editTas
                 closeOnClick
                 theme="dark"
             />
-            <div className="w-[450px] min-h-[500px] flex flex-col bg-[#2e2e2e] p-5 mt-5 rounded-lg">
-                <form className="flex gap-4" onSubmit={handleSubmit}>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Your Task"
-                        onChange={handleChange}
-                        value={userInput}
-                        ref={inputFocus}
-                    />
-                    <button className="bg-transparent hover:bg-blue-600 text-white hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent rounded"
-                    >{editTask ? "Save" : "Add"}</button>
-                </form>
-                <div className="my-4">
-                    <List
-                        tasks={tasks}
-                        setTasks={setTasks}
-                        setEditTask={setEditTask}
-                        inputFocus={inputFocus}
-                        isInCompletedSection={false}
-                    />
-                </div>
+
+            <form className="flex gap-4" onSubmit={handleSubmit}>
+                <input className="shadow appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:border-2 focus:border-blue-500  focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Your Task"
+                    onChange={handleChange}
+                    value={userInput}
+                    ref={inputFocus}
+                />
+                <button className="bg-transparent hover:bg-blue-600 text-white hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent rounded"
+                >{editTask ? "Save" : "Add"}</button>
+            </form>
+            <div className="my-4">
+                <List
+                    tasks={tasks}
+                    setTasks={setTasks}
+                    setEditTask={setEditTask}
+                    inputFocus={inputFocus}
+                    isInCompletedSection={false}
+                />
             </div>
         </>
     )

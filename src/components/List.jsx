@@ -52,6 +52,7 @@ export default function List({ tasks, setTasks, setEditTask, inputFocus, isInCom
         closeOnClick
         theme="dark"
       />
+
       {newTask.map((todo) => (
         <li className="max-w-full flex justify-between items-center bg-white rounded-md h-[40px] mb-5" key={todo.id}>
           <input
